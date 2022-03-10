@@ -1,6 +1,9 @@
 package patika.game;
 
 import patika.game.location.Location;
+import patika.game.location.batteloc.locations.Cave;
+import patika.game.location.batteloc.locations.Forest;
+import patika.game.location.batteloc.locations.River;
 import patika.game.location.normalloc.SafeHouse;
 import patika.game.location.normalloc.ToolStore;
 import patika.game.player.Player;
@@ -22,33 +25,58 @@ public class Game {
         System.out.println("Burada yaşananların hepsi gerçek");
         System.out.println("Lütfen bir karakter seçiniz");
         player.selectChar();
+        player.printInfo();
 
         Location location = null;
 
         while (true) {
+            System.out.println("\t \t \t");
+
             System.out.println("Bölgeler");
-            System.out.println("1 - Güvenli Ev");
-            System.out.println("2 - Mağaza");
+            System.out.println("1 - Güvenli Ev --> Burası sizin için güvenli bir ev, düşman yoktur");
+            System.out.println("2 - Eşya Dükkanı --> Silah veya Zırh satın alabilirsiniz");
+            System.out.println("3 - Mağara --> Ödül <Yemek> Mağaraya git, dikkatli ol zombi çıkabilir !");
+            System.out.println("4 - Orman --> Ödül <Odun> Ormana git, dikkatli ol vampir çıkabilir !");
+            System.out.println("5 - Nehir --> Ödül <Su> Nehire git, dikkatli ol ayı çıkabilir !");
+            System.out.println("0 - Çıkış Yap --> Oyunu sonlandır.");
             System.out.println("Lütfen gitmek istediğiniz bölgeyi seçiniz :");
 
             int selectLoc = input.nextInt();
 
             switch(selectLoc) {
+                case 0:
+                    location = null;
+                    break;
                 case 1:
-                    location = new SafeHouse();
+                    location = new SafeHouse(player);
                     break;
                 case 2:
-                    location = new ToolStore();
+                    location = new ToolStore(player);
+                    break;
+                case 3:
+                    location = new Cave(player);
+                    break;
+                case 4:
+                    location = new Forest(player);
+                    break;
+                case 5:
+                    location = new River(player);
                     break;
                 default:
-                    location = new SafeHouse();
+                    location = new SafeHouse(player);
             }
-            location.setPlayer(player);
 
-            location.onLocation();
+            if(location == null) {
+                System.out.println("-----------------");
+                System.out.println("Bu karanlık ve sisli adadan çabucak vazgeçtin");
+                break;
+            } else {
+                player.printInfo();
+            }
 
             if (location.onLocation() == false) {
                 System.out.println("Oyun bitti");
+                System.out.println("-----------------");
                 break;
             }
         }

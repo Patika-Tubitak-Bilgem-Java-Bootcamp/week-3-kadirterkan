@@ -1,9 +1,17 @@
 package patika.game.common;
 
-public abstract class Common {
+public abstract class BaseEntity {
 
     protected Long id;
     protected String name;
+
+    public BaseEntity() {
+    }
+
+    public BaseEntity(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

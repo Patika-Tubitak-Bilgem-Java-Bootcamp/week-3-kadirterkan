@@ -1,9 +1,8 @@
 package patika.game.player.gamechar;
 
-import patika.game.common.Common;
-import patika.game.entities.BaseEntity;
+import patika.game.common.BaseEntity;
 
-public abstract class GameChar extends Common {
+public abstract class GameChar extends BaseEntity {
 
     private Integer damage;
     private Integer health;

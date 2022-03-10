@@ -14,9 +14,10 @@ public class Player {
     private Inventory inventory;
     private GameChar gameChar;
     private String name;
+    private Integer health;
 
     public Player() {
-
+        this.inventory = new Inventory();
     }
 
     public Inventory getInventory() {
@@ -33,6 +34,8 @@ public class Player {
 
     public void setGameChar(GameChar gameChar) {
         this.gameChar = gameChar;
+        this.health = gameChar.getHealth();
+        this.getInventory().setMoney(gameChar.getMoney());
     }
 
     public String getName() {
@@ -41,6 +44,30 @@ public class Player {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getHealth() {
+        return health;
+    }
+
+    public void setHealth(Integer health) {
+        if (health < 0) {
+            health = 0;
+        }
+        this.health = health;
+    }
+
+    public Integer getTotalDamage() {
+        return gameChar.getDamage() + this.getInventory().getWeapon().getDamage();
+    }
+
+    public void printInfo() {
+        System.out.println("Silahınız : " + this.getInventory().getWeapon().getName() +
+                ", Zırh : " + this.getInventory().getArmor().getName() +
+                ", Bloklama : " + this.getInventory().getArmor().getBlock() +
+                ", Hasar : " + this.getTotalDamage() +
+                ", Sağlık : " + this.getHealth() +
+                ", Para : " + this.getInventory().getMoney());
     }
 
     public void selectChar() {
@@ -58,6 +85,9 @@ public class Player {
         Integer selectChar = input.nextInt();
         setGameChar(charList[selectChar - 1]);
 
-        System.out.println("Karakteriniz: " + getGameChar().getName());
+        System.out.println("Karakteriniz : " + this.getGameChar().getName() +
+                ", Hasar : " + this.getGameChar().getDamage() +
+                ", Sağlık : " + this.getGameChar().getHealth() +
+                ", Para : " + this.getInventory().getMoney());
     }
 }

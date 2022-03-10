@@ -1,8 +1,8 @@
 package patika.game.player.inventory.items;
 
-import patika.game.common.Common;
+import patika.game.common.BaseEntity;
 
-public class Weapon extends Common {
+public class Weapon extends BaseEntity {
 
     private Integer damage;
     private Integer price;
@@ -12,6 +12,21 @@ public class Weapon extends Common {
         this.id = id;
         this.damage = damage;
         this.price = price;
+    }
+
+    public static Weapon[] weapons() {
+        return new Weapon[]{new Weapon("Tabanca", 1L, 2, 5), new Weapon("Kılıç", 2L, 3, 35), new Weapon("Tüfek", 3L, 7, 45)};
+    }
+
+    public static Weapon getWeaponObjByID(Long id) {
+
+        for (Weapon w : Weapon.weapons()) {
+            if (w.getId().equals(id)) {
+                return w;
+            }
+        }
+
+        return null;
     }
 
     public Integer getDamage() {
@@ -28,13 +43,5 @@ public class Weapon extends Common {
 
     public void setPrice(Integer price) {
         this.price = price;
-    }
-
-    public static Weapon[] weapons() {
-        Weapon[] weaponList = {new Weapon("Tabanca", 1L, 2, 25),
-                new Weapon("Kılıç", 2L, 3, 35),
-                new Weapon("Tüfek", 3L, 7, 45)};
-
-        return weaponList;
     }
 }

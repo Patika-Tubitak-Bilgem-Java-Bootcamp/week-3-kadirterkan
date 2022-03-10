@@ -1,29 +1,20 @@
 package patika.game.player.inventory;
 
+import patika.game.player.inventory.items.Armor;
+import patika.game.player.inventory.items.Weapon;
+
 public class Inventory {
 
     private Boolean water;
     private Boolean food;
     private Boolean firewood;
-    private String weaponName;
-    private String armorName;
-    private Integer weaponDamage;
-    private Integer armorDefence;
+    private Weapon weapon;
+    private Armor armor;
+    private Integer money;
 
-    public Inventory(Boolean water,
-                     Boolean food,
-                     Boolean firewood,
-                     String weaponName,
-                     String armorName,
-                     Integer weaponDamage,
-                     Integer armorDefence) {
-        this.water = water;
-        this.food = food;
-        this.firewood = firewood;
-        this.weaponName = weaponName;
-        this.armorName = armorName;
-        this.weaponDamage = weaponDamage;
-        this.armorDefence = armorDefence;
+    public Inventory() {
+        this.weapon = new Weapon("Yumruk", 0L, 0, 0);
+        this.armor = new Armor(0L, "Paçavra", 0, 0);
     }
 
     public Boolean getWater() {
@@ -50,35 +41,27 @@ public class Inventory {
         this.firewood = firewood;
     }
 
-    public String getWeaponName() {
-        return weaponName;
+    public Weapon getWeapon() {
+        return weapon;
     }
 
-    public void setWeaponName(String weaponName) {
-        this.weaponName = weaponName;
+    public void setWeapon(Weapon weapon) {
+        this.weapon = weapon;
     }
 
-    public String getArmorName() {
-        return armorName;
+    public Armor getArmor() {
+        return armor;
     }
 
-    public void setArmorName(String armorName) {
-        this.armorName = armorName;
+    public void setArmor(Armor armor) {
+        this.armor = armor;
     }
 
-    public Integer getWeaponDamage() {
-        return weaponDamage;
+    public Integer getMoney() {
+        return money;
     }
 
-    public void setWeaponDamage(Integer weaponDamage) {
-        this.weaponDamage = weaponDamage;
-    }
-
-    public Integer getArmorDefence() {
-        return armorDefence;
-    }
-
-    public void setArmorDefence(Integer armorDefence) {
-        this.armorDefence = armorDefence;
+    public void setMoney(Integer money) {
+        this.money = money;
     }
 }
