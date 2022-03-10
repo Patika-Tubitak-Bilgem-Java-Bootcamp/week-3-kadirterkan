@@ -1,5 +1,6 @@
 package patika.game.location;
 
+import patika.game.location.batteloc.BattleLoc;
 import patika.game.player.Player;
 
 import java.util.Scanner;
@@ -39,4 +40,12 @@ public abstract class Location {
     }
 
     public abstract Boolean onLocation();
+
+    public Boolean completedLocation() {
+        if(this instanceof BattleLoc) {
+            return ((BattleLoc) this).completedLocation();
+        } else {
+            return false;
+        }
+    }
 }

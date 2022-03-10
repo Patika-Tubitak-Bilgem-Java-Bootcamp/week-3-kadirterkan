@@ -29,6 +29,10 @@ public class Game {
 
         Location location = null;
 
+        System.out.println("---------------------------");
+        System.out.println("Oyunu tamamlamak için bütün bölgeleri canavalardan temizleyip, ödülleri toplayıp güvenli eve geri dönmen gerekmektedir. ");
+        System.out.println("---------------------------");
+
         while (true) {
             System.out.println("\t \t \t");
 
@@ -64,6 +68,10 @@ public class Game {
                     break;
                 default:
                     location = new SafeHouse(player);
+            }
+
+            if (location.completedLocation()) {
+                System.out.println("Bu bölgeyi zaten temizledin, başka bir bölge seç. ");
             }
 
             if(location == null) {

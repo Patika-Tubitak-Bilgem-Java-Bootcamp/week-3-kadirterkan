@@ -64,4 +64,36 @@ public class Inventory {
     public void setMoney(Integer money) {
         this.money = money;
     }
+
+    public void gainAward(String award) {
+        switch (award) {
+            case "water":
+                this.water = true;
+                break;
+            case "food":
+                this.food = true;
+                break;
+            case "firewood":
+                this.firewood = true;
+                break;
+            default:
+        }
+    }
+
+    public Boolean hasAward(String award) {
+        switch (award) {
+            case "water":
+                return water;
+            case "food":
+                return food;
+            case "firewood":
+                return firewood;
+            default:
+                return null;
+        }
+    }
+
+    public Boolean collectedAllAwards() {
+        return this.water && this.food && this.firewood;
+    }
 }

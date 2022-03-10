@@ -13,6 +13,12 @@ public class Obstacle extends BaseEntity {
 
     }
 
+    public Obstacle(Long id, String name, Integer health) {
+        super(id, name);
+        this.health = health;
+        this.defaultHealth = health;
+    }
+
     public Obstacle(Long id, String name, Integer damage, Integer health, Integer award) {
         super(id, name);
         this.damage = damage;
@@ -58,5 +64,9 @@ public class Obstacle extends BaseEntity {
 
     public Integer obstacleNumber() {
         return null;
+    }
+
+    public void gainAward() {
+
     }
 }
