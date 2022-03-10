@@ -2,10 +2,10 @@ package patika.game.entities.Creature.Karakter;
 
 import patika.game.entities.Creature.BaseCreature;
 
-public class Karakter extends BaseCreature {
+public class Character extends BaseCreature {
 
     @Override
     public String getClassName() {
-        return "Karakter";
+        return "Character";
     }
 }

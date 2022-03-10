@@ -1,2 +1,30 @@
-package patika.game.location;public class Location {
+package patika.game.location;
+
+import patika.game.player.Player;
+
+public abstract class Location {
+
+    protected Player player;
+    protected String name;
+
+    public Location() {
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public abstract Boolean onLocation();
 }
