@@ -177,7 +177,11 @@ public abstract class BattleLoc extends Location {
         System.out.println(i + ". " + this.getObstacle().getName() + " Değerleri");
         System.out.println("------------------------------------------");
         System.out.println("Sağlık :" + this.getObstacle().getHealth());
-        System.out.println("Hasar :" + this.getObstacle().getDamage());
+        if (this.getObstacle() instanceof Snake) {
+            System.out.println("Hasar 3 ile 6 arasında rastgeledir:");
+        } else {
+            System.out.println("Hasar :" + this.getObstacle().getDamage());
+        }
         if (this.award != null) {
             System.out.println("Ödül :" + this.getObstacle().getAward());
         } else {

@@ -6,7 +6,6 @@ import patika.game.player.inventory.items.Armor;
 import patika.game.player.inventory.items.Weapon;
 
 import java.util.Locale;
-import java.util.Random;
 import java.util.Scanner;
 import java.util.SplittableRandom;
 
@@ -19,8 +18,7 @@ public class Snake extends Obstacle {
     }
 
     public Integer getDamage() {
-        Random random = new Random();
-        return random.nextInt(6) + 3;
+        return random.nextInt(3, 7);
     }
 
     public void gainAward(Player player) {
