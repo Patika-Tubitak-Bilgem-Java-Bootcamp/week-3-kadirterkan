@@ -45,4 +45,9 @@ public class Armor extends BaseEntity {
     public void setPrice(Integer price) {
         this.price = price;
     }
+
+    public void printArmor() {
+        System.out.println(this.getId() + " - " + this.getName() +
+                " <Para : " + this.getPrice() + " , Zırh : " + this.getBlock() + ">");
+    }
 }

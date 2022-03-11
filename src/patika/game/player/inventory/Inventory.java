@@ -15,6 +15,9 @@ public class Inventory {
     public Inventory() {
         this.weapon = new Weapon("Yumruk", 0L, 0, 0);
         this.armor = new Armor(0L, "Paçavra", 0, 0);
+        water = false;
+        food = false;
+        firewood = false;
     }
 
     public Boolean getWater() {
@@ -89,7 +92,7 @@ public class Inventory {
             case "firewood":
                 return firewood;
             default:
-                return null;
+                return true;
         }
     }
 

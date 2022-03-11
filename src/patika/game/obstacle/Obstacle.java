@@ -1,6 +1,7 @@
 package patika.game.obstacle;
 
 import patika.game.common.BaseEntity;
+import patika.game.player.Player;
 
 public class Obstacle extends BaseEntity {
 
@@ -66,7 +67,10 @@ public class Obstacle extends BaseEntity {
         return null;
     }
 
-    public void gainAward() {
-
+    public void gainAward(Player player) {
+        System.out.println(this.award + " para kazandınız !");
+        player.getInventory().setMoney(player.getInventory().getMoney() + this.award);
+        System.out.println("Güncel Paranız : " + player.getInventory().getMoney());
+        System.out.println("-----------------");
     }
 }

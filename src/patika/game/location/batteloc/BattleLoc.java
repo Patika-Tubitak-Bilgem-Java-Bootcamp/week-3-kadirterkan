@@ -2,6 +2,7 @@ package patika.game.location.batteloc;
 
 import patika.game.location.Location;
 import patika.game.obstacle.Obstacle;
+import patika.game.obstacle.creatures.Snake;
 import patika.game.player.Player;
 
 import java.util.Random;
@@ -21,6 +22,12 @@ public abstract class BattleLoc extends Location {
 
     public BattleLoc(Obstacle obstacle) {
         this.obstacle = obstacle;
+    }
+
+    public BattleLoc(Player player, String name, Snake snake, Integer maxObstacle) {
+        super(player, name);
+        this.obstacle = snake;
+        this.maxObstacle = maxObstacle;
     }
 
     public Integer randomObstacleNumber() {
@@ -53,11 +60,15 @@ public abstract class BattleLoc extends Location {
     }
 
     public Boolean completedLocation() {
-        if (this.getPlayer().getInventory().hasAward(this.award)) {
-            return true;
-        } else {
-            return false;
+        if (this.award != null) {
+            if (this.getPlayer().getInventory().hasAward(this.award)) {
+                return true;
+            } else {
+                return false;
+            }
         }
+
+        return false;
     }
 
     public Boolean onLocation() {
@@ -73,8 +84,10 @@ public abstract class BattleLoc extends Location {
         if (selectCase.equals("S") && combat(obsNumber)) {
             System.out.println("-----------------");
             System.out.println(this.getName() + " tüm düşmanları yendiniz");
-            this.getPlayer().getInventory().gainAward(this.award);
-            System.out.println(this.getObstacle().getAward() + " ödülü envanterinize eklendi.");
+            if (this.award != null) {
+                this.getPlayer().getInventory().gainAward(this.award);
+                System.out.println(this.getObstacle().getAward() + " ödülü envanterinize eklendi.");
+            }
             System.out.println("Bölgeyi başarıyla temizlediniz, dönmenize gerek yoktur. ");
             return true;
         } else if (selectCase.equals("K")) {
@@ -120,10 +133,7 @@ public abstract class BattleLoc extends Location {
             if (this.getObstacle().getHealth() < this.getPlayer().getHealth()) {
                 System.out.println("-----------------");
                 System.out.println("Düşmanı yendiniz");
-                System.out.println(this.getObstacle().getAward() + " para kazandınız");
-                this.getPlayer().getInventory().setMoney(this.getPlayer().getInventory().getMoney() + this.getObstacle().getAward());
-                System.out.println("Güncel Paranız : " + this.getPlayer().getInventory().getMoney());
-                System.out.println("-----------------");
+                this.getObstacle().gainAward(player);
             } else {
                 return false;
             }
@@ -139,7 +149,7 @@ public abstract class BattleLoc extends Location {
     }
 
     private void attackByEnemy() {
-        System.out.println();
+        System.out.println("İlk atak canavardan");
         System.out.println("Canavar Size Vurdu !");
         Integer obstacleDamage = (this.obstacle.getDamage() - this.getPlayer().getInventory().getArmor().getBlock());
         if (obstacleDamage < 0) obstacleDamage = 0;
@@ -168,7 +178,11 @@ public abstract class BattleLoc extends Location {
         System.out.println("------------------------------------------");
         System.out.println("Sağlık :" + this.getObstacle().getHealth());
         System.out.println("Hasar :" + this.getObstacle().getDamage());
-        System.out.println("Ödül :" + this.getObstacle().getAward());
+        if (this.award != null) {
+            System.out.println("Ödül :" + this.getObstacle().getAward());
+        } else {
+            System.out.println("Ödül rastgeledir ");
+        }
     }
 
     private Boolean firstStrikeByEnemy() {

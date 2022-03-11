@@ -44,4 +44,9 @@ public class Weapon extends BaseEntity {
     public void setPrice(Integer price) {
         this.price = price;
     }
+
+    public void printWeapon() {
+        System.out.println(this.getId() + " - " + this.getName() +
+                " <Para : " + this.getPrice() + " , Hasar : " + this.getDamage() + ">");
+    }
 }
