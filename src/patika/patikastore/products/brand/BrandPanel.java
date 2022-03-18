@@ -1,7 +1,6 @@
 package patika.patikastore.products.brand;
 
 import patika.patikastore.entities.Brand;
-import patika.patikastore.store.StoreMockDatabase;
 
 public class BrandPanel {
 
@@ -9,7 +8,7 @@ public class BrandPanel {
         System.out.println("Our brands");
         System.out.println("--------------------");
 
-        for (Brand brand : StoreMockDatabase.getBrands()) {
+        for (Brand brand : BrandService.getBrands()) {
             brand.printBrand();
         }
 

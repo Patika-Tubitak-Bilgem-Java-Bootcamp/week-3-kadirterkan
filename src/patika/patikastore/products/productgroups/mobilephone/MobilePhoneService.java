@@ -1,9 +1,9 @@
 package patika.patikastore.products.productgroups.mobilephone;
 
 import patika.patikastore.Main;
-import patika.patikastore.products.brand.BrandPanel;
 import patika.patikastore.entities.Brand;
 import patika.patikastore.entities.MobilePhone;
+import patika.patikastore.products.brand.BrandPanel;
 import patika.patikastore.store.StoreMockDatabase;
 
 public class MobilePhoneService {
@@ -19,7 +19,7 @@ public class MobilePhoneService {
         Main.input.nextLine();
         String brandName = Main.input.nextLine();
 
-        Brand brand = StoreMockDatabase.getBrandByName(brandName);
+        Brand brand = StoreMockDatabase.getBrandByBrandName(brandName);
 
         System.out.println("\n Please enter the products name");
         String productName = Main.input.nextLine();

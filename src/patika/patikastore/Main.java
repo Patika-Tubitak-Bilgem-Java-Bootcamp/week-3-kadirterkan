@@ -1,6 +1,7 @@
 package patika.patikastore;
 
 import patika.patikastore.products.brand.BrandPanel;
+import patika.patikastore.products.productgroups.laptop.LaptopPanelService;
 import patika.patikastore.products.productgroups.mobilephone.MobilePhonePanel;
 import patika.patikastore.store.StoreMockDatabase;
 
@@ -27,6 +28,7 @@ public class Main {
                     exitFlag = true;
                     break;
                 case 1:
+                    LaptopPanelService.laptopPanel();
                     break;
                 case 2:
                     MobilePhonePanel.mobilePhonePanel();

@@ -63,13 +63,13 @@ public class StoreMockDatabase {
         List<MobilePhone> mock = new ArrayList<>();
 
         mock.add(new MobilePhone(3199, 0, 0,
-                "SAMSUNG GALAXY A51", getBrandByName("Samsung"), 128,
+                "SAMSUNG GALAXY A51", getBrandByBrandName("Samsung"), 128,
                 6.5F, 4000, 32, 6, "Black"));
         mock.add(new MobilePhone(7379, 0, 0,
-                "iPhone 11 64 GB", getBrandByName("Apple"), 64,
+                "iPhone 11 64 GB", getBrandByBrandName("Apple"), 64,
                 6.1F, 3046, 5, 6, "Blue"));
         mock.add(new MobilePhone(4012, 0, 0,
-                "Redmi Note 10 Pro 8GB", getBrandByName("Xiaomi"), 128,
+                "Redmi Note 10 Pro 8GB", getBrandByBrandName("Xiaomi"), 128,
                 6.5F, 4000, 35, 12, "White"));
 
         return mock;
@@ -79,16 +79,16 @@ public class StoreMockDatabase {
         List<Laptop> mock = new ArrayList<>();
 
         mock.add(new Laptop(7000, 0, 0, "HUAWEI Matebook 14",
-                getBrandByName("Huawei"), 16, 512, 14F));
+                getBrandByBrandName("Huawei"), 16, 512, 14F));
         mock.add(new Laptop(3699, 0, 0, "LENOVO V14 IGL",
-                getBrandByName("Lenovo"), 8, 1024, 14F));
+                getBrandByBrandName("Lenovo"), 8, 1024, 14F));
         mock.add(new Laptop(8199, 0, 0, "ASUS Tuf Gaming",
-                getBrandByName("Asus"), 32, 2048, 15.6F));
+                getBrandByBrandName("Asus"), 32, 2048, 15.6F));
 
         return mock;
     }
 
-    public static Brand getBrandByName(String brandName) {
+    public static Brand getBrandByBrandName(String brandName) {
         for (Brand brand : StoreMockDatabase.brands) {
             if (brand.getBrandName().equals(brandName)) {
                 return brand;
@@ -101,7 +101,48 @@ public class StoreMockDatabase {
         StoreMockDatabase.mobilePhoneList.add(mobilePhone);
     }
 
-    public static Boolean deleteMobilePhone(MobilePhone mobilePhone) {
-        return StoreMockDatabase.mobilePhoneList.remove(mobilePhone);
+    public static Boolean deleteMobilePhone(Integer id) {
+        for (MobilePhone mobilePhone : StoreMockDatabase.mobilePhoneList) {
+            if (mobilePhone.getProductsRegisteredUniqueSystemNumber().equals(id)) {
+                return StoreMockDatabase.mobilePhoneList.remove(mobilePhone);
+            }
+        }
+
+        return false;
+    }
+
+    public static void addNewLaptop(Laptop laptop) {
+        StoreMockDatabase.laptopList.add(laptop);
+    }
+
+    public static Boolean deleteLaptopById(Integer id) {
+        for (Laptop laptop : StoreMockDatabase.laptopList) {
+            if (laptop.getProductsRegisteredUniqueSystemNumber().equals(id)) {
+                return StoreMockDatabase.laptopList.remove(laptop);
+            }
+        }
+
+        return false;
+    }
+
+    public static Laptop getLaptopById(Integer id) {
+        for (Laptop laptop : StoreMockDatabase.laptopList) {
+            if (laptop.getProductsRegisteredUniqueSystemNumber().equals(id)) {
+                return laptop;
+            }
+        }
+
+        return null;
+    }
+
+    public static List<Laptop> getLaptopListFilterByBrand(Brand brand) {
+        List<Laptop> filteredList = new ArrayList<>();
+        for (Laptop laptop : StoreMockDatabase.laptopList) {
+            if(laptop.getBrandInfo().equals(brand)) {
+                filteredList.add(laptop);
+            }
+        }
+
+        return filteredList;
     }
 }
