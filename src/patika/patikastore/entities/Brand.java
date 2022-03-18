@@ -1,9 +1,14 @@
-package patika.patikastore.products;
+package patika.patikastore.entities;
 
-public class Brand implements Comparable<Brand>{
+public class Brand implements Comparable<Brand> {
 
     private Integer brandId;
     private String brandName;
+
+    public Brand(Integer brandId, String brandName) {
+        this.brandId = brandId;
+        this.brandName = brandName;
+    }
 
     public Integer getBrandId() {
         return brandId;
@@ -24,5 +29,9 @@ public class Brand implements Comparable<Brand>{
     @Override
     public int compareTo(Brand o) {
         return this.brandName.compareTo(o.getBrandName());
+    }
+
+    public void printBrand() {
+        System.out.println(" - " + this.brandName);
     }
 }

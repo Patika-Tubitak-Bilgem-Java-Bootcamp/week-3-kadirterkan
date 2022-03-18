@@ -1,12 +1,20 @@
 package patika.patikastore;
 
+import patika.patikastore.products.brand.BrandPanel;
+import patika.patikastore.products.productgroups.mobilephone.MobilePhonePanel;
+import patika.patikastore.store.StoreMockDatabase;
+
 import java.util.Scanner;
 
 public class Main {
 
+    public static String line = "------------------------------------------------------------------------------------------------------------------------------";
+
     public final static Scanner input = new Scanner(System.in);
 
     public static void main(String[] args) {
+        StoreMockDatabase store = new StoreMockDatabase();
+
         Boolean exitFlag = false;
 
         System.out.println("Welcome to hell");
@@ -15,7 +23,17 @@ public class Main {
             printPanel();
 
             switch (getInputFromUser()) {
-                case 1 ->
+                case 0:
+                    exitFlag = true;
+                    break;
+                case 1:
+                    break;
+                case 2:
+                    MobilePhonePanel.mobilePhonePanel();
+                    break;
+                case 3:
+                    BrandPanel.printAllBrands();
+                    break;
             }
 
         }

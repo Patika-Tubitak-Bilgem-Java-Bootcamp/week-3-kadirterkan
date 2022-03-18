@@ -1,16 +1,19 @@
-package patika.patikastore.products;
+package patika.patikastore.entities;
+
+import patika.patikastore.entities.Brand;
 
 public abstract class ProductGroup {
 
-    private Integer productsRegisteredUniqueSystemNumber; //Because why not, I want it that way
+    private static Integer maxID = 0;
+    private Integer productsRegisteredUniqueSystemNumber;
     private Integer unitPrice;
     private Integer discountRatio;
     private Integer stockAmount;
-    private Integer productName;
+    private String productName;
     private Brand brandInfo;
 
-    public ProductGroup(Integer productsRegisteredUniqueSystemNumber, Integer unitPrice, Integer discountRatio, Integer stockAmount, Integer productName, Brand brandInfo) {
-        this.productsRegisteredUniqueSystemNumber = productsRegisteredUniqueSystemNumber;
+    public ProductGroup(Integer unitPrice, Integer discountRatio, Integer stockAmount, String productName, Brand brandInfo) {
+        this.productsRegisteredUniqueSystemNumber = Integer.valueOf(maxID++);
         this.unitPrice = unitPrice;
         this.discountRatio = discountRatio;
         this.stockAmount = stockAmount;
@@ -50,11 +53,11 @@ public abstract class ProductGroup {
         this.stockAmount = stockAmount;
     }
 
-    public Integer getProductName() {
+    public String getProductName() {
         return productName;
     }
 
-    public void setProductName(Integer productName) {
+    public void setProductName(String productName) {
         this.productName = productName;
     }
 
