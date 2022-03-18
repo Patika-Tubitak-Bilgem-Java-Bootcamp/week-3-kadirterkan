@@ -1,10 +1,9 @@
 package patika.patikastore.products.productgroups.mobilephone;
 
 import patika.patikastore.Main;
-import patika.patikastore.entities.MobilePhone;
+import patika.patikastore.entities.Brand;
+import patika.patikastore.products.brand.BrandPanel;
 import patika.patikastore.store.StoreMockDatabase;
-
-import java.util.List;
 
 public class MobilePhonePanel {
 
@@ -13,14 +12,14 @@ public class MobilePhonePanel {
 
         while (!exitFlag) {
             switch (panelOptions()) {
+                case 0:
+                    exitFlag = true;
+                    break;
                 case 1:
-                    listAllPhones();
+                    MobilePhoneListService.mobilePhonePanelList();
                     break;
                 case 2:
                     addNewPhone();
-                    break;
-                case 3:
-                    exitFlag = true;
                     break;
                 default:
                     System.out.println("Wrong input !");
@@ -37,23 +36,39 @@ public class MobilePhonePanel {
         return Main.input.nextInt();
     }
 
-    public static void listAllPhones() {
-        List<MobilePhone> mobilePhoneList = StoreMockDatabase.getMobilePhoneList();
-
-        System.out.println(Main.line);
-        MobilePhoneService.printPhoneVariables();
-        System.out.println(Main.line);
-
-        for (MobilePhone phone : mobilePhoneList) {
-            MobilePhoneService.printPhone(phone);
-        }
-
-        System.out.println(Main.line);
-    }
-
     public static void addNewPhone() {
-        MobilePhone phone = MobilePhoneService.addNewMobilePhone();
+        BrandPanel.printAllBrands();
+        System.out.println("\n\n Please enter the brand name");
+        Main.input.nextLine();
+        String brandName = Main.input.nextLine();
 
-        StoreMockDatabase.addNewMobilePhone(phone);
+        Brand brand = StoreMockDatabase.getBrandByBrandName(brandName);
+
+        System.out.println("\n Please enter the products name");
+        String productName = Main.input.nextLine();
+
+        System.out.println("\n Please enter the products price");
+        Integer unitPrice = Main.input.nextInt();
+
+        System.out.println("\n Please enter the products storage");
+        Integer storageInfo = Main.input.nextInt();
+
+        System.out.println("\n Please enter the products screen size");
+        Float screenSize = Main.input.nextFloat();
+
+        System.out.println("\n Please enter the products camera");
+        Integer camera = Main.input.nextInt();
+
+        System.out.println("\n Please enter the products battery");
+        Integer batteryPower = Main.input.nextInt();
+
+        System.out.println("\n Please enter the products ram");
+        Integer RAM = Main.input.nextInt();
+
+        Main.input.nextLine();
+        System.out.println("\n Please enter the products color");
+        String color = Main.input.nextLine();
+
+        MobilePhoneService.addNewMobilePhone(brand, productName, unitPrice, storageInfo, screenSize, camera, batteryPower, RAM, color);
     }
 }

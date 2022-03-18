@@ -1,53 +1,22 @@
 package patika.patikastore.products.productgroups.mobilephone;
 
-import patika.patikastore.Main;
 import patika.patikastore.entities.Brand;
 import patika.patikastore.entities.MobilePhone;
-import patika.patikastore.products.brand.BrandPanel;
 import patika.patikastore.store.StoreMockDatabase;
+
+import java.util.List;
 
 public class MobilePhoneService {
 
-    public static void printPhoneVariables() {
+    public static void printMobilePhoneVariables() {
         System.out.format("| %2s | %-22s | %-5s | %-10s | %-7s | %-8s | %-6s | %-7s | %-3s | %-7s |\n",
                 "ID", "Product Name", "Price", "Brand", "Storage", "Screen", "Camera", "Battery", "RAM", "Color");
     }
 
-    public static MobilePhone addNewMobilePhone() {
-        BrandPanel.printAllBrands();
-        System.out.println("\n\n Please enter the brand name");
-        Main.input.nextLine();
-        String brandName = Main.input.nextLine();
-
-        Brand brand = StoreMockDatabase.getBrandByBrandName(brandName);
-
-        System.out.println("\n Please enter the products name");
-        String productName = Main.input.nextLine();
-
-        System.out.println("\n Please enter the products price");
-        Integer unitPrice = Main.input.nextInt();
-
-        System.out.println("\n Please enter the products storage");
-        Integer storageInfo = Main.input.nextInt();
-
-        System.out.println("\n Please enter the products screen size");
-        Float screenSize = Main.input.nextFloat();
-
-        System.out.println("\n Please enter the products camera");
-        Integer camera = Main.input.nextInt();
-
-        System.out.println("\n Please enter the products battery");
-        Integer batteryPower = Main.input.nextInt();
-
-        System.out.println("\n Please enter the products ram");
-        Integer RAM = Main.input.nextInt();
-
-        Main.input.nextLine();
-        System.out.println("\n Please enter the products color");
-        String color = Main.input.nextLine();
-
-        return new MobilePhone(unitPrice, 0, 0, productName, brand,
-                storageInfo, screenSize, batteryPower, camera, RAM, color);
+    public static void addNewMobilePhone(Brand brand, String productName, Integer unitPrice, Integer storageInfo,
+                                                Float screenSize, Integer camera, Integer batteryPower, Integer RAM, String color) {
+        StoreMockDatabase.addNewMobilePhone(new MobilePhone(unitPrice, 0, 0, productName, brand,
+                storageInfo, screenSize, batteryPower, camera, RAM, color));
     }
 
     public static void printPhone(MobilePhone phone) {
@@ -62,5 +31,21 @@ public class MobilePhoneService {
                 phone.getBatteryPower(),
                 phone.getRAM(),
                 phone.getColor());
+    }
+
+    public static List<MobilePhone> getPhoneList() {
+        return StoreMockDatabase.getMobilePhoneList();
+    }
+
+    public static List<MobilePhone> getMobilePhoneFilterByBrandName(Brand brand) {
+        return StoreMockDatabase.getMobilePhoneListFilteredByBrandName(brand);
+    }
+
+    public static MobilePhone getMobilePhoneById(Integer id) {
+        return StoreMockDatabase.getMobilePhoneById(id);
+    }
+
+    public static void removeMobilePhoneById(Integer id) {
+        StoreMockDatabase.removeMobilePhoneById(id);
     }
 }

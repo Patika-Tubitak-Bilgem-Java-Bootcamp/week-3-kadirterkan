@@ -115,7 +115,7 @@ public class StoreMockDatabase {
         StoreMockDatabase.laptopList.add(laptop);
     }
 
-    public static Boolean deleteLaptopById(Integer id) {
+    public static Boolean removeLaptopById(Integer id) {
         for (Laptop laptop : StoreMockDatabase.laptopList) {
             if (laptop.getProductsRegisteredUniqueSystemNumber().equals(id)) {
                 return StoreMockDatabase.laptopList.remove(laptop);
@@ -144,5 +144,36 @@ public class StoreMockDatabase {
         }
 
         return filteredList;
+    }
+
+    public static MobilePhone getMobilePhoneById(Integer id) {
+        for (MobilePhone mobilePhone : StoreMockDatabase.mobilePhoneList) {
+            if (mobilePhone.getProductsRegisteredUniqueSystemNumber().equals(id)) {
+                return mobilePhone;
+            }
+        }
+
+        return null;
+    }
+
+    public static List<MobilePhone> getMobilePhoneListFilteredByBrandName(Brand brand) {
+        List<MobilePhone> mobilePhoneList = new ArrayList<>();
+        for (MobilePhone mobilePhone : StoreMockDatabase.mobilePhoneList) {
+            if(mobilePhone.getBrandInfo().equals(brand)) {
+                mobilePhoneList.add(mobilePhone);
+            }
+        }
+
+        return mobilePhoneList;
+    }
+
+    public static Boolean removeMobilePhoneById(Integer id) {
+        for (MobilePhone mobilePhone : StoreMockDatabase.mobilePhoneList) {
+            if (mobilePhone.getProductsRegisteredUniqueSystemNumber().equals(id)) {
+                return StoreMockDatabase.mobilePhoneList.remove(mobilePhone);
+            }
+        }
+
+        return false;
     }
 }
