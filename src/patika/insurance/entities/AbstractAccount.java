@@ -2,18 +2,22 @@ package patika.insurance.entities;
 
 import patika.insurance.entities.enums.AuthenticationStatus;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public abstract class AbstractAccount implements Comparable<AbstractAccount> {
 
+    private final Double accountFactor;
     private User user;
     private AuthenticationStatus status;
     private ArrayList<AbstractInsurance> insuranceList;
 
-    public AbstractAccount(User user) {
+    public AbstractAccount(User user, Double accountFactor) {
         this.user = user;
+        this.accountFactor = accountFactor;
         this.status = AuthenticationStatus.FAIL;
         this.insuranceList = new ArrayList<>();
+
     }
 
     public final void showUserInfo() {
@@ -33,6 +37,10 @@ public abstract class AbstractAccount implements Comparable<AbstractAccount> {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Double getAccountFactor() {
+        return accountFactor;
     }
 
     public Boolean login(String email, String password) throws InvalidAuthenticationException {
@@ -75,7 +83,6 @@ public abstract class AbstractAccount implements Comparable<AbstractAccount> {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof AbstractAccount) {
-            obj = (AbstractAccount) obj;
             return ((AbstractAccount) obj).getUser().equals(this.user);
         }
         return false;
@@ -83,5 +90,10 @@ public abstract class AbstractAccount implements Comparable<AbstractAccount> {
 
     public void logout() {
         this.status = AuthenticationStatus.FAIL;
+        this.user.setLastEntry(LocalDate.now());
+    }
+
+    public ArrayList<AbstractInsurance> getInsuranceList() {
+        return insuranceList;
     }
 }

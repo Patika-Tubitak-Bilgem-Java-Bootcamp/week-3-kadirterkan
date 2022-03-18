@@ -1,5 +1,6 @@
 package patika.insurance.entities;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,7 +14,7 @@ public class User {
     private String job;
     private Integer age;
     private ArrayList<IAddress> IAddresses;
-    private Date lastEntry;
+    private LocalDate lastEntry;
 
     public User(String name,
                 String surname,
@@ -22,7 +23,7 @@ public class User {
                 String job,
                 Integer age,
                 ArrayList<IAddress> IAddresses,
-                Date lastEntry) {
+                LocalDate lastEntry) {
         this.id = Integer.valueOf(id++);
         this.name = name;
         this.surname = surname;
@@ -40,7 +41,7 @@ public class User {
                 String password,
                 String job,
                 Integer age,
-                Date lastEntry) {
+                LocalDate lastEntry) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -115,11 +116,11 @@ public class User {
         this.IAddresses = IAddresses;
     }
 
-    public Date getLastEntry() {
+    public LocalDate getLastEntry() {
         return lastEntry;
     }
 
-    public void setLastEntry(Date lastEntry) {
+    public void setLastEntry(LocalDate lastEntry) {
         this.lastEntry = lastEntry;
     }
 

@@ -14,6 +14,10 @@ public abstract class AbstractAddress implements IAddress{
         this.state = state;
     }
 
+    public AbstractAddress() {
+
+    }
+
     public String getName() {
         return name;
     }
@@ -43,6 +47,14 @@ public abstract class AbstractAddress implements IAddress{
     }
 
     public void setState(String state) {
+        this.state = state;
+    }
+
+    @Override
+    public void setAddressVariables(String addressName, String address, String city, String state) {
+        this.name = addressName;
+        this.address = address;
+        this.city = city;
         this.state = state;
     }
 }

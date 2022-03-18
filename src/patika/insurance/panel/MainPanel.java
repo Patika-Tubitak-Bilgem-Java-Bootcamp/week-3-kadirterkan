@@ -2,6 +2,8 @@ package patika.insurance.panel;
 
 import patika.insurance.entities.AbstractAccount;
 import patika.insurance.manager.AccountManager;
+import patika.insurance.panel.address.AddressManagerPanel;
+import patika.insurance.panel.insurance.InsuranceManagerPanel;
 
 import java.util.Scanner;
 
@@ -25,12 +27,16 @@ public class MainPanel {
                     account.logout();
                     break;
                 case 1:
+                    InsuranceManagerPanel.addNewInsurancePanel();
                     break;
                 case 2:
+                    InsuranceManagerPanel.listAllInsurances();
                     break;
                 case 3:
+                    AddressManagerPanel.panel();
                     break;
                 case 4:
+                    AddressManagerPanel.listAllAddresses();
                     break;
             }
         }
@@ -59,5 +65,9 @@ public class MainPanel {
     private static Integer chooseOption() {
         System.out.print("Your choice : ");
         return input.nextInt();
+    }
+
+    public static AbstractAccount getAccount() {
+        return account;
     }
 }

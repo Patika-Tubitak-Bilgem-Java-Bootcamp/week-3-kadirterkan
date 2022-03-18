@@ -6,6 +6,10 @@ public class BusinessAddress extends AbstractAddress {
         super(name, address, city, state);
     }
 
+    public BusinessAddress() {
+        super();
+    }
+
     @Override
     public void getFullAddress() {
         System.out.print("Business Address \n Address Name : " + this.getName() + "\n" +

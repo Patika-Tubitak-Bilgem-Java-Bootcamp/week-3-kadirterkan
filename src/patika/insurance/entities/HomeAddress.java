@@ -6,6 +6,10 @@ public class HomeAddress extends AbstractAddress {
         super(name, address, city, state);
     }
 
+    public HomeAddress() {
+        super();
+    }
+
     @Override
     public void getFullAddress() {
         System.out.print("Home Address \n Address Name : " + this.getName() + "\n" +
