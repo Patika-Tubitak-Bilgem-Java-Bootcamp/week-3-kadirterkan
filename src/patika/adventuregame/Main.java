@@ -1,4 +1,4 @@
-package patika.adventuregame.main;
+package patika.adventuregame;
 
 import patika.adventuregame.game.Game;
 
